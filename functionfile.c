@@ -11,7 +11,7 @@
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putchar(char *c)
+int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
@@ -22,7 +22,9 @@ int _putchar(char *c)
  */
 int print_char(va_list chr)
 {
-	_putchar(va_arg(chr, int));
+	char b = (va_arg(chr, int));
+	_putchar(b);
+
 	return (1);
 }
 
@@ -51,23 +53,22 @@ int print_str(va_list s)
  *
 */
 
-void (*find_value(char n))(va_list)
+int (*find_value(char n))(va_list)
 {
 	int i = 0;
 
 	lo_p ftr[] = {
-	{"c", print_char}
-	{"s", print_str}
-	{"%", print_char}
-	{NULL, NULL}
+		{"c", print_char},
+		{"s", print_str},
+		{"%", print_char},
+		{NULL, NULL}
 	};
 
 	while (i <= 3)
 	{
-		if (n == ftr[i]->chr)
+		if (n == *(ftr[i].chr))
 			return (ftr[i].f);
-		else
-			return (n);
 	i++;
 	}
+	return(NULL);
 }

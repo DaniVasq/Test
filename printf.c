@@ -1,8 +1,9 @@
 #include "holberton.h"
 #include <stdarg.h>
+#include <stdio.h>
 
 /**
- * _printf - 
+ * _printf - produces output according to format.
  *
  *
  *
@@ -11,23 +12,21 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	va_start(args, format);
-	char *runner;
-	int i = 0, chrcounter = 0;
+	int chrcounter = 0, i;
 
-	for (runner = format; *runner != '\0'; runner++)
+	va_start(args, format);
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		while (*runner != '%')
+		while (format[i] != '%' && format[i] != '\0')
 		{
-			_putchar(*runner, 1);
-			runner++;
+			_putchar(format[i]);
 			i++;
 			chrcounter++;
 		}
-		if (*runner == '%')
+		if (format[i] == '%')
 		{
-			runner++;
-			chrcounter += (find_value(*runner))(args);
+			i++;
+			chrcounter += (find_value(format[i]))(args);
 		}
 	}
 	return (chrcounter);
