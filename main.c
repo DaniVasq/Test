@@ -9,14 +9,11 @@
  */
 int main(void)
 {
+	int i,j;
 
-	_printf("Let's try to printf a simple sentence.\n");
-	_printf("-----\n");
-	_printf("Character:[%c]\n", 'H');
-	printf("Character:[%c]\n", 'H');
-	_printf("String:[%s]\n", "I am a string !");
-	printf("String:[%s]\n", "I am a string !");
-	_printf("Percent:[%%]\n");
-	printf("Percent:[%%]\n");
+	i = printf("%s", NULL);
+	j = _printf("%s", NULL);
+	printf("True %i\n", i);
+	printf("%i\n", j);
 	return (0);
 }
