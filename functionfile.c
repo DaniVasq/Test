@@ -5,11 +5,9 @@
 #include "holberton.h"
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _putchar - writes the character c to stdout.
+ * @c: The character to print.
+ * Return: Write.
  */
 int _putchar(char c)
 {
@@ -17,21 +15,22 @@ int _putchar(char c)
 }
 
 /**
- * print_char - prints an char
- *
+ * print_char - prints an char.
+ * @chr: va_list to recieve.
+ * Return: Number of printed characters, Always (1).
  */
 int print_char(va_list chr)
 {
-	char b = (va_arg(chr, int));
-	_putchar(b);
+	char b = (char)(va_arg(chr, int));
 
+	_putchar(b);
 	return (1);
 }
 
 /**
- *
- *
- *
+ * print_str - Function that prints a string.
+ * @s: va_list to recieve.
+ * Return: Number of printed characters less 1 (without '\0')
 */
 
 int print_str(va_list s)
@@ -47,10 +46,9 @@ int print_str(va_list s)
 }
 
 /**
- *
- *
- *
- *
+ * find_value - function that will find the necessary function to process n.
+ * @n: Character to be operated.
+ * Return: The necessary function to process n.
 */
 
 int (*find_value(char n))(va_list)
@@ -60,7 +58,7 @@ int (*find_value(char n))(va_list)
 	lo_p ftr[] = {
 		{"c", print_char},
 		{"s", print_str},
-		{"%", print_char},
+		{"%", print_percent},
 		{NULL, NULL}
 	};
 
@@ -70,5 +68,17 @@ int (*find_value(char n))(va_list)
 			return (ftr[i].f);
 	i++;
 	}
-	return(NULL);
+	return (NULL);
+}
+
+/**
+ * print_percent - Functio to print a '%'.
+ * @percent: va_list to recieve.
+ * Return: Number of printed characters, always (1).
+ */
+
+int print_percent(va_list __attribute__((unused)) percent)
+{
+	_putchar('%');
+	return (1);
 }

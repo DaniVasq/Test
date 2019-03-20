@@ -4,20 +4,19 @@
 
 /**
  * _printf - produces output according to format.
- *
- *
- *
+ * @format: argument
+ * Return: Number of printed characters (chrcounter).
 */
 
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int chrcounter = 0, i;
+	int chrcounter = 0, i = 0;
 
 	va_start(args, format);
-	for (i = 0; format[i] != '\0'; i++)
+	while (format[i] != '\0')
 	{
-		while (format[i] != '%' && format[i] != '\0')
+		while ((format[i] != '%') && (format[i + 1] != '\0'))
 		{
 			_putchar(format[i]);
 			i++;
@@ -27,7 +26,10 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			chrcounter += (find_value(format[i]))(args);
+			i++;
 		}
+		_putchar(format[i]);
+		i++;
 	}
 	return (chrcounter);
 }
