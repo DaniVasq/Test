@@ -15,5 +15,8 @@ int main(void)
 	j = _printf("%s", NULL);
 	printf("True %i\n", i);
 	printf("%i\n", j);
+	_printf("--------- Print new line");
+	_printf("%c",'\n');
+	_printf("ESTO\n");
 	return (0);
 }
